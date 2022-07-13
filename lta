@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ "$#" -lt 1 ]
+then
+  echo 'Usage: lta [...1 mandatory arguments]'
+  exit
+fi
+#use fc command to get last command run in shell
+lastcmd=$(fc -nl -1) 
+#create a new alias , echoing into xargs to trim whitespace
+newal "$1" "$(echo $lastcmd | xargs)"
