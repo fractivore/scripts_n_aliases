@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#script to make a direcory and then cd into it
+if [ "$#" -lt 1 ]
+then
+  echo 'Usage: mkcdir [...1 mandatory arguments]'
+  exit
+fi
+
+mkdir "$1"
+cd "$1"

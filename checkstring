@@ -1,0 +1,14 @@
+#!/bin/python3
+
+from sys import argv
+
+if len(argv) < 3:
+    print("Usage: checkstring <str1> <str2>")
+    exit()
+if type(argv[1])!= str or type(argv[2])!= str:
+    print("Error: arguments must be strings.")
+    exit()
+if argv[1] in argv[2] or argv[2] in argv[1]:
+    print("True")
+else:
+    print("False")

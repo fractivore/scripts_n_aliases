@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#run several git commands to initialize the current directory to the specified remote url or ssh, in the branch 'autocommit'. The commit message is a simple timestamp message and an empty README.md file is added automatically to the repo.
+
+#Usage: gitinitauto $REMOTE
+REMOTE="$1"
+
+touch README.md
+git init
+git checkout -b autocommit
+git add README.md
+git commit -m "auto commit at: $(date)"
+git remote add origin $REMOTE
+git push -u origin autocommit

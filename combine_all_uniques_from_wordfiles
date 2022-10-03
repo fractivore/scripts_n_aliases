@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#Usage: combine_all_uniques_from_wordfiles $DIRECTORY_LIST
+raw_list=$(ls)
+for filename in $raw_list
+do
+
+  if [ $( file -0 $filename | cut -d $'\0' -f2 | grep text | wc -w ) -gt 0 ]
+  then
+    echo "text file:" $filename
+    cat "$filename" | sed s/' '/'\n'/g >> redundant.txt
+  fi
+done
+echo "Sorting ..."
+sort redundant.txt | uniq > all_unique.txt && rm redundant.txt

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+raw_list=$(ls)
+for filename in $raw_list
+do
+  if [ $( file -0 $filename | cut -d $'\0' -f2 | grep text | wc -w ) -gt 0 ]
+  then
+    echo "$filename"
+  fi
+done

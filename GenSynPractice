@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#look at sound card list file to ensure Studio Capture audio interface is connected
+studio_capture_status=$(cat /proc/asound/cards | grep STUDIOCAPTURE | wc -l)
+if [ $studio_capture_status -lt 1 ]
+then
+  echo "Please connect studio capture before running!"
+  exit 1
+else
+  #actually configure everything if the studio capture is connected
+
+  #start jack, exit on failure
+  jack_control start || { echo "jack_control failed to start! Exiting." exit 1; }
+  clf_orgdelim &
+  carla ~/music_presets/GeneralSynths.carxp &
+  ardour GenSyn_TemplateREAL &
+fi

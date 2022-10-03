@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ "$#" -lt 1 ]
+then
+  echo 'Usage: dump4vimpatch $FILE_TO_PATCH'
+  echo 'This will open a hex dump of the file in vim for convenient hex editing.'
+  echo 'Then, use savepatchedvim on the patched file to restore it to its original format'
+fi
+filenameIn="$1"
+xxd "$filenameIn" > "$filenameIn".hex
+vi "$filenameIn".hex
+

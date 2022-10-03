@@ -1,0 +1,24 @@
+#!/bin/bash
+
+#example script for simple CLI input validation. Checks that the first two CLI arguments are populated and look numerical - that is, they are comprised of digits and at most one decimal point.
+#The if statement can be expanded to work with different numbers of mandatory input arguments.
+
+number1="$1"
+number2="$2"
+
+if [ -z "$number1" ] || [ -z "$number2" ] 
+then 
+    echo 'Inputs cannot be blank, please try again' 
+    exit 0 
+else
+    echo 'Inputs not blank'
+if ! [[ "$number1" =~ ^[+-]?[0-9]+\.?[0-9]*$ ]] || ! [[ "$number2" =~ ^[+-]?[0-9]+\.?[0-9]*$ ]] 
+then 
+    echo "One or more inputs is non-numerical" 
+    exit -1
+else
+    echo "Input is numerical"
+    exit 1
+fi
+fi
+
